@@ -21,21 +21,9 @@
 #include "PipeInterrupter.hpp"
 
 using namespace Callback;
-using Port = int;
-using Timestamp = int64_t;
 
 
-// void dispatchAfter(double delay, Functor&& cb, RunLoop* runloop);
-
-// void createQueue(int type, int priority);
-// 每个线程有个对应的messageQueue. 
-class MessageQueue
-{
-public:
-
-private:
-};
-
+ 
 class RunLoop
 {
 public:

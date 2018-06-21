@@ -50,23 +50,6 @@ private:
  
 };
 
-
-class TimerID 
-{
-public:
-    TimerID()
-    : timer_(nullptr), 
-    sequence_(0)
-    {}
-
-    TimerID(Timer* timer, int64_t seq)
-    : timer_(timer), sequence_(seq)
-    {}
-
-private:
-    Timer* timer_;
-    int64_t sequence_;
-};
-
+ 
 
 

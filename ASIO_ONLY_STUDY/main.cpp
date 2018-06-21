@@ -138,14 +138,14 @@ void test_timers()
     auto guard = asio::make_work_guard(io);
     constexpr int duration = 1;
     deadline_timer timer(io);
-    timer.expires_from_now(std::chrono::seconds(duration));
+    timer.expires_from_now(std::chrono::milliseconds(1111));
     
     std::function<void(asio::error_code)> handler =
     [&](asio::error_code ec)
     {
         std::cout << " async wait" << std::endl;
-        timer.expires_from_now(std::chrono::seconds(duration));
-        timer.async_wait(handler);
+//        timer.expires_from_now(std::chrono::seconds(duration));
+//        timer.async_wait(handler);
     };
     
     timer.async_wait(handler);
@@ -241,8 +241,7 @@ void test()
     pool.join();
 }
 
-#include <atomic>
-#include "EventWatcher.hpp"
+#include <atomic> 
 #include <chrono>
 
 
@@ -250,7 +249,7 @@ void test()
 
 void printNow()
 {
-    std::cout << "printNow     " << usecNow() << std::endl;
+    std::cout << "performNow:     " << usecNow() << std::endl;
 }
 
 void testRunloop()
@@ -300,27 +299,27 @@ void testRunloop2()
 {
     RunLoop& runloop = RunLoop::currentRunLoop();
     
-    runloop.performAfter(0.333, []{
+    runloop.performAfter(0.001, []{
         printNow();
-//        std::cout << "2.333" << std::endl;
+        std::cout << "0.001" << std::endl;
         // testRunloop();
     });
     
     runloop.performAfter(1, []{
         printNow();
-//        std::cout << "333333333" << std::endl;
+        std::cout << "1" << std::endl;
 //        testRunloop();
     });
     
     runloop.performAfter(1.33333, []{
         printNow();
-//        std::cout << "2222222" << std::endl;
+        std::cout << "1.33333" << std::endl;
         //        testRunloop();
     });
-    
+
     runloop.performAfter(3, []{
         printNow();
-//        std::cout << "2222222" << std::endl;
+        std::cout << "3" << std::endl;
         //        testRunloop();
     });
     
@@ -331,11 +330,13 @@ void testRunloop2()
 
 
 int main(int argc, const char * argv[]) {
-     
+
+//    test_timers();
+    
     std::thread thread([]{
        testRunloop2();
     });
-    
+
     thread.join();
     return 0;
 }

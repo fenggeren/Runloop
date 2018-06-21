@@ -519,7 +519,6 @@
 		1F3203B220D8EEE900015B68 /* RunLoop.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RunLoop.hpp; sourceTree = "<group>"; };
 		1F3203B420D8F4BC00015B68 /* Callbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callbacks.h; sourceTree = "<group>"; };
 		1F3203B520D8F4BC00015B68 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
-		1F3203B620D9006E00015B68 /* EventWatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventWatcher.hpp; sourceTree = "<group>"; };
 		1F3203B720D9083000015B68 /* PipeInterrupter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PipeInterrupter.cpp; sourceTree = "<group>"; };
 		1F3203B820D9083000015B68 /* PipeInterrupter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PipeInterrupter.hpp; sourceTree = "<group>"; };
 		1F3203BA20D9F21500015B68 /* TimerQueue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimerQueue.cpp; sourceTree = "<group>"; };
@@ -1243,7 +1242,6 @@
 		1F3203B020D8ECAE00015B68 /* Runloop */ = {
 			isa = PBXGroup;
 			children = (
-				1F3203B620D9006E00015B68 /* EventWatcher.hpp */,
 				1F3203B120D8EEE900015B68 /* RunLoop.cpp */,
 				1F3203B220D8EEE900015B68 /* RunLoop.hpp */,
 				1F3203B420D8F4BC00015B68 /* Callbacks.h */,
