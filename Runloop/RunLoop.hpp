@@ -1,0 +1,127 @@
+//
+//  RunLoop.hpp
+//  ASIO_ONLY_STUDY
+//
+//  Created by huanao on 2018/6/19.
+//  Copyright © 2018年 huanao. All rights reserved.
+//
+
+#pragma once
+
+#include <string>
+#include <functional>
+#include <thread>
+#include <list>
+#include <vector>
+#include <pthread.h>
+#include <mutex>
+#include "Callbacks.h"
+#include "Timer.hpp"
+#include "TimerQueue.hpp"
+#include "PipeInterrupter.hpp"
+
+using namespace Callback;
+using Port = int;
+using Timestamp = int64_t;
+
+
+// void dispatchAfter(double delay, Functor&& cb, RunLoop* runloop);
+
+// void createQueue(int type, int priority);
+// 每个线程有个对应的messageQueue. 
+class MessageQueue
+{
+public:
+
+private:
+};
+
+class RunLoop
+{
+public:
+
+    enum
+    {
+        Init = 0,
+        Running = 1,
+        BeforeTimers = 2,
+        BeforeWaiting = 3,
+        AfterWaiting = 4,
+        Exit = 5,
+    };
+
+    static RunLoop& currentRunLoop();
+
+    ~RunLoop();
+
+    void run();
+
+    void performImmediately(Functor&& cb);
+    void perform(Functor&& cb); 
+
+
+    Timer* performAfter(double delay, Functor&& cb);
+    Timer* performEvery(double interval, Functor&& cb);
+    Timer* performAt(double time, Functor&& cb);
+    
+    void addTimer(Timer* timer);
+    
+    bool isInLoopThread() const { return threadID_ == pthread_self();}
+
+    void stopRun();
+
+    void wakeUp();
+    
+
+private:
+    
+    RunLoop();
+    
+    void getTimeout(long usec, timespec& ts);
+
+    
+    void performHandlers();
+
+    void performTimers(std::list<Timer*>&& timers);
+     
+    
+private:
+    RunLoop(const RunLoop&) = delete ;
+    RunLoop(RunLoop&&) = delete ;
+    const RunLoop& operator=(const RunLoop&) = delete;
+    const RunLoop& operator=(RunLoop&&) = delete;
+    
+private:
+    
+    const pthread_t threadID_;
+    TimerQueue timerQueue_;
+
+    int kqueueFd_;
+
+    PipeInterrupter interrupter_;
+
+    std::mutex mutex_;
+    std::list<Functor> handlers_;
+    std::atomic<bool> shutdown_;
+    std::atomic<int> state_;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
