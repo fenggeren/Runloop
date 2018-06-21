@@ -13,5 +13,5 @@ int64_t usecNow()
 {
     struct timeval tv;
     gettimeofday(&tv, NULL);
-    return tv.tv_sec * kMicroSecondsPerSecond;
+    return tv.tv_sec * kMicroSecondsPerSecond + tv.tv_usec;
 }

@@ -67,7 +67,6 @@ void RunLoop::run()
         getTimeout(-1, timeout);
         struct kevent events[128];
         state_ = BeforeWaiting;
-        
         int numEvents = kevent(kqueueFd_, 0, 0, events, 128, &timeout);
         state_ = AfterWaiting;
         
@@ -98,7 +97,6 @@ void RunLoop::getTimeout(long usec, timespec& ts)
     usec = timerQueue_.waitDurationUsec((usec < 0 || maxUsec < usec) ? maxUsec : usec);
     ts.tv_sec = usec / kMicroSecondsPerSecond;
     ts.tv_nsec = (usec % kMicroSecondsPerSecond) * 1000;
-    std::cout << " duration:  " << usec / (double)kMicroSecondsPerSecond  << std::endl;
 }
 
 
