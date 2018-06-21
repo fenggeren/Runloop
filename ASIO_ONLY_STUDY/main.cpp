@@ -328,10 +328,13 @@ void testRunloop2()
     runloop.run();
 }
 
+#include <queue>
 
 int main(int argc, const char * argv[]) {
 
 //    test_timers();
+    
+    std::priority_queue<int> priority;
     
     std::thread thread([]{
        testRunloop2();

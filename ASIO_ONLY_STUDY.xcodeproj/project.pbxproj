@@ -14,6 +14,7 @@
 		1F3203B920D9083000015B68 /* PipeInterrupter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F3203B720D9083000015B68 /* PipeInterrupter.cpp */; };
 		1F3203BC20D9F21500015B68 /* TimerQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F3203BA20D9F21500015B68 /* TimerQueue.cpp */; };
 		1F3203BF20DA453200015B68 /* HelperUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F3203BD20DA453200015B68 /* HelperUtils.cpp */; };
+		1F3203C220DB86FA00015B68 /* Dispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F3203C020DB86FA00015B68 /* Dispatch.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -525,6 +526,8 @@
 		1F3203BB20D9F21500015B68 /* TimerQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimerQueue.hpp; sourceTree = "<group>"; };
 		1F3203BD20DA453200015B68 /* HelperUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelperUtils.cpp; sourceTree = "<group>"; };
 		1F3203BE20DA453200015B68 /* HelperUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelperUtils.hpp; sourceTree = "<group>"; };
+		1F3203C020DB86FA00015B68 /* Dispatch.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dispatch.cpp; sourceTree = "<group>"; };
+		1F3203C120DB86FA00015B68 /* Dispatch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Dispatch.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1252,6 +1255,8 @@
 				1F3203BB20D9F21500015B68 /* TimerQueue.hpp */,
 				1F3203BD20DA453200015B68 /* HelperUtils.cpp */,
 				1F3203BE20DA453200015B68 /* HelperUtils.hpp */,
+				1F3203C020DB86FA00015B68 /* Dispatch.cpp */,
+				1F3203C120DB86FA00015B68 /* Dispatch.hpp */,
 			);
 			path = Runloop;
 			sourceTree = "<group>";
@@ -1317,6 +1322,7 @@
 				1F3200CD20CE4E4D00015B68 /* main.cpp in Sources */,
 				1F3202D420D25DB300015B68 /* RunloopManager.cpp in Sources */,
 				1F3203B920D9083000015B68 /* PipeInterrupter.cpp in Sources */,
+				1F3203C220DB86FA00015B68 /* Dispatch.cpp in Sources */,
 				1F3203BF20DA453200015B68 /* HelperUtils.cpp in Sources */,
 				1F3203B320D8EEE900015B68 /* RunLoop.cpp in Sources */,
 			);
