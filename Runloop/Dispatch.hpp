@@ -21,14 +21,7 @@ using DispatchGroup = int;
 using Port = int;
 const static int DISPATCH_QUEUE_SERIAL = 1;
 const static int DISPATCH_QUEUE_CONCURRENT = 2;
-
-class Queue
-{
-public:
-
-private:
-};
-
+ 
 void dispatchAfter(double delay, DispatchQueue queue, Functor&& func);
 void dispatchAsync(DispatchQueue queue, Functor&& func);
 void dispatchSync(DispatchQueue queue, Functor&& func);
@@ -69,10 +62,6 @@ private:
 };
 
 }
-
-
-
-
 
 
 

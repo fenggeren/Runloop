@@ -15,6 +15,7 @@
 #include <vector>
 #include <pthread.h>
 #include <mutex>
+#include <memory>
 #include "Callbacks.h"
 #include "Timer.hpp"
 #include "TimerQueue.hpp"
@@ -22,7 +23,9 @@
 
 using namespace Callback;
 
- 
+class RunLoop;
+using RunloopPtr =  std::shared_ptr<RunLoop>;
+
 class RunLoop
 {
 public:
@@ -38,6 +41,8 @@ public:
     };
 
     static RunLoop& currentRunLoop();
+
+//    static RunloopPtr mainRunLoop();
 
     ~RunLoop();
 

@@ -15,7 +15,7 @@
 #include <set>
 #include <unordered_set>
 #include <pthread.h>
- #include <unistd.h>
+#include <unistd.h>
 
 
 
@@ -162,17 +162,88 @@ void testRunloop2()
 
 #include <queue>
 
+
+#include "Worker.hpp"
+#include "MessageQueue.hpp"
+
+
+void test_serial_queue()
+{
+    std::shared_ptr<SerialQueue> serial(std::make_shared<SerialQueue>());
+    std::shared_ptr<SerialWorker> worker(std::make_shared<SerialWorker>());
+    serial->setWorker(worker);
+    const static int duration = 1;
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    
+    worker->wait();
+}
+
+void test_concurrent_queue()
+{
+    std::shared_ptr<ConcurrentQueue> serial(std::make_shared<ConcurrentQueue>());
+    std::shared_ptr<ConcurrentWorker> worker(std::make_shared<ConcurrentWorker>(2));
+    serial->setWorker(worker);
+    const static int duration = 1;
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    serial->put([]{
+        sleep(duration);
+        std::cout  << std::this_thread::get_id() << " =========1 " << std::endl;
+        sleep(duration);
+    });
+    
+    worker->wait();
+}
+
+
 int main(int argc, const char * argv[]) {
 
+    test_concurrent_queue();
+//    test_serial_queue();
+//    test();
+    
+    
 //    test_timers();
     
-    std::priority_queue<int> priority;
-    
-    std::thread thread([]{
-       testRunloop2();
-    });
-
-    thread.join();
+//    std::priority_queue<int> priority;
+//
+//    std::thread thread([]{
+//       testRunloop2();
+//    });
+//
+//    thread.join();
     return 0;
 }
 
