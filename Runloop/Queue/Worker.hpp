@@ -14,6 +14,8 @@
 #include <map>
 #include <condition_variable>
 #include <thread>
+#include <list>
+#include <map>
 #include "MessageQueue.hpp"
 
 class Queue;
@@ -40,9 +42,27 @@ using Handler = std::function<void()>;
  */
 class Worker
 {
+public:
+
+    Worker();
     
+    void work(Handler&& handler);
+    
+    void idle();
+    void idleLock();
+    
+    void wait();
+    
+private:
+    std::thread thread_;
+    std::condition_variable condition_;
+    std::mutex mutex_;
+    Handler handler_;
+    bool idle_;
 };
 
+
+ 
 
 // Serial Worker
 class SerialWorker

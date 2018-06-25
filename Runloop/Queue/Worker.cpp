@@ -8,6 +8,53 @@
 
 #include "Worker.hpp"
 
+
+
+Worker::Worker():
+idle_(true)
+{
+    thread_ = std::thread([this]{
+        while(true)
+        {
+            if(idle_  || handler_ == nullptr)
+            {
+                std::unique_lock<std::mutex> lock(mutex_);
+                condition_.wait(lock);
+            } else if(handler_){
+                handler_();
+            }
+        }
+    });
+}
+
+void Worker::work(Handler&& handler)
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    handler_ = handler;
+    idle_ = false;
+    condition_.notify_one();
+}
+
+void Worker::idle()
+{
+    idle_ = true;
+    handler_ = nullptr;
+}
+void Worker::idleLock()
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    idle_ = true;
+    handler_ = nullptr;
+}
+
+void Worker::wait()
+{
+    thread_.join();
+}
+
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
 SerialWorker::SerialWorker()
 : idle_(true)
 {
